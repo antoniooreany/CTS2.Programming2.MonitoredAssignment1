@@ -1,2 +1,0 @@
-# CTS2.Programming2.MonitoredAssignment1
-CTS2.Programming2.MonitoredAssignment1
