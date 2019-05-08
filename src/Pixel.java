@@ -10,12 +10,10 @@ class Pixel extends Rectangle {
     }
 
     void fill(Filler filler) {
-        switch (filler) {
-            case BLACK:
-                setFill(Color.BLACK);
-                break;
-            case WHITE:
-                setFill(Color.WHITE);
+        if (filler == Filler.BLACK) {
+            setFill(Color.BLACK);
+        } else if (filler == Filler.WHITE) {
+            setFill(Color.WHITE);
         }
 
     }
