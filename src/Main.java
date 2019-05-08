@@ -39,7 +39,7 @@ public class Main extends Application {
                         paint(me, gridRoot);
                         break;
                     case SECONDARY:
-                        gridRoot.clear();
+                        gridRoot.clearAll();
                         break;
                 }
             }
@@ -71,7 +71,7 @@ public class Main extends Application {
         int col = (int) ((x + hgap/2 - LEFT_INSET) / (pixelWidth + hgap));
         int row = (int) ((y + vgap/2 - TOP_INSET) / (pixelHeight + vgap));
         Pixel currentPixel = (Pixel) gridRoot.getPixelByIndexes(col, row);
-        currentPixel.fill(true);
+        currentPixel.fill(Filler.BLACK);
     }
 
     public static void main(String[] args) {

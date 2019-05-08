@@ -40,7 +40,7 @@ class GridRoot extends GridPane {
     private void pixelsInit(int xMax, int yMax, int pixelWidth, int pixelHeight) {
         for (int x = 0; x < xMax; x++) {
             for (int y = 0; y < yMax; y++) {
-                Pixel pixel = new Pixel(pixelWidth, pixelHeight, false);
+                Pixel pixel = new Pixel(pixelWidth, pixelHeight, Filler.WHITE);
                 add(pixel, x, y);
             }
         }
@@ -55,11 +55,11 @@ class GridRoot extends GridPane {
         return null;
     }
 
-    void clear() {
+    void clearAll() {
         for (int x = 0; x < X_MAX; x++) {
             for (int y = 0; y < Y_MAX; y++) {
                 Pixel currentPixel = (Pixel) getPixelByIndexes(x, y);
-                currentPixel.fill(false);
+                currentPixel.fill(Filler.WHITE);
             }
         }
     }
