@@ -5,13 +5,12 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-
 public class Main extends Application {
 
-    private static final int TOP_INSET = 50;
-    private static final int RIGHT_INSET = 50;
-    private static final int BOTTOM_INSET = 50;
-    private static final int LEFT_INSET = 50;
+    private static final int TOP_INSET = 0;
+    private static final int RIGHT_INSET = 0;
+    private static final int BOTTOM_INSET = 0;
+    private static final int LEFT_INSET = 0;
 
     // Override the start() method.
     public void start(Stage myStage) {

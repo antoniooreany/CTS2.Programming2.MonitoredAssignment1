@@ -3,12 +3,12 @@ import javafx.scene.layout.GridPane;
 
 class GridRoot extends GridPane {
 
-    private static final int X_MAX = 40;
-    private static final int Y_MAX = 40;
-    private static final int H_GAP = 20;
-    private static final int V_GAP = 20;
-    private static final int PIXEL_WIDTH = 10;
-    private static final int PIXEL_HEIGHT = 10;
+    private static final int X_MAX = 16;
+    private static final int Y_MAX = 16;
+    private static final int H_GAP = 2;
+    private static final int V_GAP = 2;
+    private static final int PIXEL_WIDTH = 20;
+    private static final int PIXEL_HEIGHT = 20;
     private static final int PANE_WIDTH = (PIXEL_WIDTH + H_GAP) * X_MAX;
     private static final int PANE_HEIGHT = (PIXEL_HEIGHT + V_GAP) * Y_MAX;
 
