@@ -4,36 +4,19 @@ import javafx.scene.layout.GridPane;
 
 class RootPane extends GridPane {
 
-    private static final int X_MAX = 16;
-    private static final int Y_MAX = 16;
-    private static final int H_GAP = 2;
-    private static final int V_GAP = 2;
-    private static final int PIXEL_WIDTH = 20;
-    private static final int PIXEL_HEIGHT = 20;
-    private static final int PANE_WIDTH = (PIXEL_WIDTH + H_GAP) * X_MAX;
-    private static final int PANE_HEIGHT = (PIXEL_HEIGHT + V_GAP) * Y_MAX;
-
-    private int getPixelWidth() {
-        return PIXEL_WIDTH;
-    }
-
-    private int getPixelHeight() {
-        return PIXEL_HEIGHT;
-    }
-
-    int getPaneWidth() {
-        return PANE_WIDTH;
-    }
-
-    int getPaneHeight() {
-        return PANE_HEIGHT;
-    }
+    static final int X_MAX = 16;
+    static final int Y_MAX = 16;
+    static final int H_GAP = 2;
+    static final int V_GAP = 2;
+    static final int PIXEL_WIDTH = 20;
+    static final int PIXEL_HEIGHT = 20;
+    static final int PANE_WIDTH = (PIXEL_WIDTH + H_GAP) * X_MAX;
+    static final int PANE_HEIGHT = (PIXEL_HEIGHT + V_GAP) * Y_MAX;
 
     RootPane() {
         // Set vertical and horizontal gaps between controls.
         setVgap(V_GAP);
         setHgap(H_GAP);
-
         // Add columns, rows.
         pixelsInit(X_MAX, Y_MAX, PIXEL_WIDTH, PIXEL_HEIGHT);
     }
@@ -56,33 +39,18 @@ class RootPane extends GridPane {
         return null;
     }
 
-    private int getColumnIndex(MouseEvent me, RootPane rootPane) {
-        double x = me.getX();
-        double hGap = rootPane.getHgap();
-        int pixelWidth = rootPane.getPixelWidth();
-        int leftInset = Main.getLeftInset();
-        int col = (int) ((x + hGap / 2 - leftInset) / (pixelWidth + hGap));
-        return col;
-    }
-
-    private int getRowIndex(MouseEvent me, RootPane rootPane) {
-        double y = me.getY();
-        double vGap = rootPane.getVgap();
-        int pixelHeight = rootPane.getPixelHeight();
-        int topInset = Main.getTopInset();
-        int row = (int) ((y + vGap / 2 - topInset) / (pixelHeight + vGap));
-        return row;
-    }
-
     void paint(MouseEvent me, RootPane rootPane) {
-        int col = getColumnIndex(me, rootPane);
-        int row = getRowIndex(me, rootPane);
+        int col = getIndex(me.getX(), rootPane.getHgap(), Main.LEFT_INSET, PIXEL_WIDTH);
+        int row = getIndex(me.getY(), rootPane.getVgap(), Main.TOP_INSET, PIXEL_HEIGHT);
         Pixel currentPixel = (Pixel) rootPane.getChildNode(col, row);
         if (currentPixel != null) {
             currentPixel.fill(Filler.BLACK);
         }
     }
 
+    private int getIndex(double coordinate, double gap, int inset, int pixelSize) {
+        return (int) ((coordinate + gap / 2 - inset) / (pixelSize + gap));
+    }
 
     void clearAll() {
         for (int col = 0; col < X_MAX; col++) {

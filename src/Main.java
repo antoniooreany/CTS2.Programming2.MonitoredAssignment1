@@ -8,18 +8,10 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    private static final int TOP_INSET = 0;
-    private static final int RIGHT_INSET = 0;
-    private static final int BOTTOM_INSET = 0;
-    private static final int LEFT_INSET = 0;
-
-    static int getTopInset() {
-        return TOP_INSET;
-    }
-
-    static int getLeftInset() {
-        return LEFT_INSET;
-    }
+    static final int TOP_INSET = 0;
+    static final int RIGHT_INSET = 0;
+    static final int BOTTOM_INSET = 0;
+    static final int LEFT_INSET = 0;
 
     // Override the start() method.
     public void start(Stage myStage) {
@@ -32,8 +24,8 @@ public class Main extends Application {
         // Gaps at the outside borders
         root.setPadding(new Insets(TOP_INSET, RIGHT_INSET, BOTTOM_INSET, LEFT_INSET));
 
-        int sceneWidth = root.getPaneWidth();
-        int sceneHeight = root.getPaneHeight();
+        int sceneWidth = RootPane.PANE_WIDTH;
+        int sceneHeight = RootPane.PANE_HEIGHT;
 
         // Create a scene.
         Scene myScene = new Scene(root, sceneWidth, sceneHeight);
