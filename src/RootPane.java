@@ -1,33 +1,65 @@
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 class RootPane extends GridPane {
+    private final int colMax;
+    private final int rowMax;
+    private final double hGap;
+    private final double vGap;
+    private final double pixelWidth;
+    private final double pixelHeight;
+    private final Color initColor;
+    private final Color paintColor;
 
-    static final int X_MAX = 16;
-    static final int Y_MAX = 16;
-    static final int H_GAP = 2;
-    static final int V_GAP = 2;
-    static final int PIXEL_WIDTH = 20;
-    static final int PIXEL_HEIGHT = 20;
-    static final int PANE_WIDTH = (PIXEL_WIDTH + H_GAP) * X_MAX;
-    static final int PANE_HEIGHT = (PIXEL_HEIGHT + V_GAP) * Y_MAX;
-
-    RootPane() {
+    RootPane(int colMax, int rowMax, double hGap, double vGap, double pixelWidth, double pixelHeight,
+             Color initColor, Color paintColor) {
+        // Initialize variables
+        this.colMax = colMax;
+        this.rowMax = rowMax;
+        this.hGap = hGap;
+        this.vGap = vGap;
+        this.pixelWidth = pixelWidth;
+        this.pixelHeight = pixelHeight;
+        this.initColor = initColor;
+        this.paintColor = paintColor;
         // Set vertical and horizontal gaps between controls.
-        setVgap(V_GAP);
-        setHgap(H_GAP);
+        setVgap(vGap);
+        setHgap(hGap);
         // Add columns, rows.
-        pixelsInit(X_MAX, Y_MAX, PIXEL_WIDTH, PIXEL_HEIGHT);
+        pixelsInit(colMax, rowMax, pixelWidth, pixelHeight/*, initFiller*/);
     }
 
-    private void pixelsInit(int colMax, int rowMax, int pixelWidth, int pixelHeight) {
+    private void pixelsInit(int colMax, int rowMax, double pixelWidth, double pixelHeight) {
         for (int col = 0; col < colMax; col++) {
             for (int row = 0; row < rowMax; row++) {
-                Pixel pixel = new Pixel(pixelWidth, pixelHeight, Filler.WHITE);
+                Pixel pixel = new Pixel(pixelWidth, pixelHeight, initColor);
                 add(pixel, col, row);
             }
         }
+    }
+
+    void paint(MouseEvent me) {
+        int col = getIndex(me.getX(), getHgap(), getPadding().getLeft(), pixelWidth);
+        int row = getIndex(me.getY(), getVgap(), getPadding().getTop(), pixelHeight);
+        Pixel pixel = (Pixel) getChildNode(col, row);
+        if (pixel != null) {
+            pixel.setFill(paintColor);
+        }
+    }
+
+    void clearAll() {
+        for (int col = 0; col < colMax; col++) {
+            for (int row = 0; row < rowMax; row++) {
+                Pixel pixel = (Pixel) getChildNode(col, row);
+                pixel.setFill(initColor);
+            }
+        }
+    }
+
+    private int getIndex(double coordinate, double gap, double inset, double pixelSize) {
+        return (int) ((coordinate + gap / 2 - inset) / (pixelSize + gap));
     }
 
     private Node getChildNode(int col, int row) {
@@ -37,29 +69,5 @@ class RootPane extends GridPane {
             }
         }
         return null;
-    }
-
-    void paint(MouseEvent me, RootPane rootPane) {
-        int col = getIndex(me.getX(), rootPane.getHgap(), Main.LEFT_INSET, PIXEL_WIDTH);
-        int row = getIndex(me.getY(), rootPane.getVgap(), Main.TOP_INSET, PIXEL_HEIGHT);
-        Pixel currentPixel = (Pixel) rootPane.getChildNode(col, row);
-        if (currentPixel != null) {
-            currentPixel.fill(Filler.BLACK);
-        }
-    }
-
-    private int getIndex(double coordinate, double gap, int inset, int pixelSize) {
-        return (int) ((coordinate + gap / 2 - inset) / (pixelSize + gap));
-    }
-
-    void clearAll() {
-        for (int col = 0; col < X_MAX; col++) {
-            for (int row = 0; row < Y_MAX; row++) {
-                Pixel currentPixel = (Pixel) getChildNode(col, row);
-                if (currentPixel != null) {
-                    currentPixel.fill(Filler.WHITE);
-                }
-            }
-        }
     }
 }

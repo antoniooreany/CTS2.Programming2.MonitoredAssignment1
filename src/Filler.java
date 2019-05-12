@@ -1,4 +1,0 @@
-enum Filler {
-    BLACK,
-    WHITE
-}
