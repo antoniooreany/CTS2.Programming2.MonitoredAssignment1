@@ -1,4 +1,4 @@
-// Demonstrate a TilePane. 
+package Kratzer.JavaFXDemos;// Demonstrate a TilePane.
 
 import javafx.application.*;
 import javafx.scene.*;

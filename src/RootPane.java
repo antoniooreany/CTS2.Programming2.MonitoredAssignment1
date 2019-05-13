@@ -13,7 +13,9 @@ class RootPane extends GridPane {
     private final Color initColor;
     private final Color paintColor;
 
-    RootPane(int colCount, int rowCount, double hGap, double vGap, double pixelWidth, double pixelHeight,
+    RootPane(int colCount, int rowCount,
+             double hGap, double vGap,
+             double pixelWidth, double pixelHeight,
              Color initColor, Color paintColor) {
         // Initialize fields
         this.colCount = colCount;
@@ -40,9 +42,9 @@ class RootPane extends GridPane {
         }
     }
 
-    void paint(MouseEvent me) {
-        int col = getIndex(me.getX(), getHgap(), getPadding().getLeft(), pixelWidth);
-        int row = getIndex(me.getY(), getVgap(), getPadding().getTop(), pixelHeight);
+    void paint(MouseEvent mouseEvent) {
+        int col = getIndex(mouseEvent.getX(), getHgap(), getPadding().getLeft(), pixelWidth);
+        int row = getIndex(mouseEvent.getY(), getVgap(), getPadding().getTop(), pixelHeight);
         Pixel pixel = (Pixel) getChildNode(col, row);
         if (pixel != null) {
             pixel.setFill(paintColor);

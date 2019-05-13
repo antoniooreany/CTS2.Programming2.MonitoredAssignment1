@@ -1,4 +1,4 @@
-// Demonstrate a text field. 
+package Kratzer.JavaFXDemos;// Demonstrate a text field.
 
 import javafx.application.*;
 import javafx.scene.*;

@@ -1,4 +1,4 @@
-// A JavaFX application skeleton. 
+package Kratzer.JavaFXDemos;// A JavaFX application skeleton.
 
 import javafx.application.Application;
 import javafx.scene.*;

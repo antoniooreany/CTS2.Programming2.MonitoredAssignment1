@@ -1,4 +1,4 @@
-// Demonstrate a scroll pane.  
+package Kratzer.JavaFXDemos;// Demonstrate a scroll pane.
 // This program scrolls the contents of a multi-line 
 // label, but any other type of Node can be scrolled. 
 

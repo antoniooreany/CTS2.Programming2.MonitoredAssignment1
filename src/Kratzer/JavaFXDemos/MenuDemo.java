@@ -1,4 +1,4 @@
-// Demonstrate Menus  
+package Kratzer.JavaFXDemos;// Demonstrate Menus
 
 import javafx.application.*;
 import javafx.scene.*;

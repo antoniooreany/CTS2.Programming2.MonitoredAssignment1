@@ -1,4 +1,4 @@
-// Demonstrate check boxes. 
+package Kratzer.JavaFXDemos;// Demonstrate check boxes.
 
 import javafx.application.*;
 import javafx.scene.*;

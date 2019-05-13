@@ -1,4 +1,4 @@
-// Demonstrate a Slider  
+package Kratzer.JavaFXDemos;// Demonstrate a Slider
 
 import javafx.application.*;
 import javafx.scene.*;

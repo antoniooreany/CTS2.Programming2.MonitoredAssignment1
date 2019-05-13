@@ -1,4 +1,6 @@
-import javafx.application.*;  
+package Kratzer.JavaFXDemos;
+
+import javafx.application.*;
 import javafx.scene.*;  
 import javafx.stage.*;  
 import javafx.scene.layout.*;  

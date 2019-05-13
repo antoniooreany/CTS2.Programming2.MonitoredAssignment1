@@ -1,4 +1,4 @@
-// Demonstrate rotation, scaling, translation, and shear. 
+package Kratzer.JavaFXDemos;// Demonstrate rotation, scaling, translation, and shear.
 
 import javafx.application.*;
 import javafx.scene.*;

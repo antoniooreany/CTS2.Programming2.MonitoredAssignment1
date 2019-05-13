@@ -1,4 +1,4 @@
-// Demonstrate StackPane. 
+package Kratzer.JavaFXDemos;// Demonstrate StackPane.
 
 import javafx.application.*;
 import javafx.scene.*;

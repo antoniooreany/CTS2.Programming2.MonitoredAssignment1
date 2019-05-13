@@ -1,4 +1,4 @@
-// Demonstrate BoxBlur, Glow, and Reflection. 
+package Kratzer.JavaFXDemos;// Demonstrate BoxBlur, Glow, and Reflection.
 
 import javafx.application.*;
 import javafx.scene.*;

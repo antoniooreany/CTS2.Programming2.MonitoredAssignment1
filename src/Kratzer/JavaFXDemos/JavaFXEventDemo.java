@@ -1,4 +1,4 @@
-// Introduce JavaFX events and buttons. 
+package Kratzer.JavaFXDemos;// Introduce JavaFX events and buttons.
 
 import javafx.application.*;
 import javafx.scene.*;

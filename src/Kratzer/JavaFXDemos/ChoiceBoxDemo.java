@@ -1,4 +1,4 @@
-// Demonstrate a choice box. 
+package Kratzer.JavaFXDemos;// Demonstrate a choice box.
 
 import javafx.application.*;
 import javafx.scene.*;

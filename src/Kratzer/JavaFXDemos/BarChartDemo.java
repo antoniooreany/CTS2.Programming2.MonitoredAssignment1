@@ -1,4 +1,4 @@
-// Demonstrate a BarChart  
+package Kratzer.JavaFXDemos;// Demonstrate a BarChart
 
 import javafx.application.*;
 import javafx.scene.*;

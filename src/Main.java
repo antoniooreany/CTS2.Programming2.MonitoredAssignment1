@@ -32,7 +32,7 @@ public class Main extends Application {
         rootPane.setPadding(new Insets(TOP_INSET, RIGHT_INSET, BOTTOM_INSET, LEFT_INSET));
         // Create a scene.
         Scene scene = new Scene(rootPane);
-        // Handle a mouse click and dragged event on the scene.
+        // Handle a mouse press and drag event on the scene.
         scene.addEventHandler(MouseEvent.MOUSE_PRESSED, getMouseEventHandler(rootPane));
         scene.addEventHandler(MouseEvent.MOUSE_DRAGGED, getMouseEventHandler(rootPane));
         // Set the scene on the stage.
@@ -44,10 +44,10 @@ public class Main extends Application {
     }
 
     private EventHandler<MouseEvent> getMouseEventHandler(RootPane rootPane) {
-        return me -> {
-            if (me.getButton() == MouseButton.PRIMARY) {
-                rootPane.paint(me);
-            } else if (me.getButton() == MouseButton.SECONDARY) {
+        return mouseEvent -> {
+            if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+                rootPane.paint(mouseEvent);
+            } else if (mouseEvent.getButton() == MouseButton.SECONDARY) {
                 rootPane.clearAll();
             }
         };

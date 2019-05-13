@@ -1,4 +1,4 @@
-// Demonstrate GridPane. 
+package Kratzer.JavaFXDemos;// Demonstrate GridPane.
 
 import javafx.application.*;
 import javafx.scene.*;

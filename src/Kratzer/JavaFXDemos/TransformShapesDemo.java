@@ -1,4 +1,4 @@
-// Transform 2-D rectangles and circles. 
+package Kratzer.JavaFXDemos;// Transform 2-D rectangles and circles.
 
 import javafx.application.*;
 import javafx.scene.*;

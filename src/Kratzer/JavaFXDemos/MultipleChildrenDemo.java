@@ -1,4 +1,4 @@
-// Demonstrate a simple scene graph that contains a label. 
+package Kratzer.JavaFXDemos;// Demonstrate a simple scene graph that contains a label.
 
 import javafx.application.*;
 import javafx.scene.*;
