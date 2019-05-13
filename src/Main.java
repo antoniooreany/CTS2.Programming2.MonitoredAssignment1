@@ -43,6 +43,8 @@ public class Main extends Application {
         // Set the scene on the stage.
         myStage.setScene(myScene);
         // Show the stage and its scene.
+        myStage.sizeToScene();
+        myStage.setResizable(false);
         myStage.show();
     }
 

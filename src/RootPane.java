@@ -50,8 +50,8 @@ class RootPane extends GridPane {
     }
 
     void clearAll() {
-        for (int col = 0; col < colMax; col++) {
-            for (int row = 0; row < rowMax; row++) {
+        for (int col = 0; col < colMax; /*getColumnConstraints().size()*/ col++) {
+            for (int row = 0; row < rowMax; /*getRowConstraints().size()*/ row++) {
                 Pixel pixel = (Pixel) getChildNode(col, row);
                 pixel.setFill(initColor);
             }
