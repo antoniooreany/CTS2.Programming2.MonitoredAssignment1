@@ -1,7 +1,9 @@
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -21,31 +23,34 @@ public class Main extends Application {
     private static final Color PAINT_COLOR = Color.BLACK;
 
     // Override the start() method.
-    public void start(Stage myStage) {
+    public void start(Stage stage) {
         // Give the stage a title.
-        myStage.setTitle("Monitored Assignment1");
+        stage.setTitle("Monitored Assignment1");
         // Create the GridPane.
-        RootPane root = new RootPane(X_MAX, Y_MAX, H_GAP, V_GAP, PIXEL_WIDTH, PIXEL_HEIGHT, INIT_COLOR, PAINT_COLOR);
+        RootPane rootPane = new RootPane(X_MAX, Y_MAX, H_GAP, V_GAP, PIXEL_WIDTH, PIXEL_HEIGHT, INIT_COLOR, PAINT_COLOR);
         // Gaps at the outside borders
-        root.setPadding(new Insets(TOP_INSET, RIGHT_INSET, BOTTOM_INSET, LEFT_INSET));
+        rootPane.setPadding(new Insets(TOP_INSET, RIGHT_INSET, BOTTOM_INSET, LEFT_INSET));
         // Create a scene.
-        Scene myScene = new Scene(root);
-        // Handle a mouse click event on the scene.
-        myScene.setOnMouseClicked(me -> {
-            if (me.getButton() == MouseButton.PRIMARY) {
-                root.paint(me);
-            } else if (me.getButton() == MouseButton.SECONDARY) {
-                root.clearAll();
-            }
-        });
-        // Handle a mouse dragged event on the scene.
-        myScene.setOnMouseDragged(me -> root.paint(me));
+        Scene scene = new Scene(rootPane);
+        // Handle a mouse click and dragged event on the scene.
+        scene.setOnMouseClicked(getMouseEventHandler(rootPane));
+        scene.setOnMouseDragged(getMouseEventHandler(rootPane));
         // Set the scene on the stage.
-        myStage.setScene(myScene);
+        stage.setScene(scene);
+        stage.sizeToScene();
+        stage.setResizable(false);
         // Show the stage and its scene.
-        myStage.sizeToScene();
-        myStage.setResizable(false);
-        myStage.show();
+        stage.show();
+    }
+
+    private EventHandler<MouseEvent> getMouseEventHandler(RootPane rootPane) {
+        return me -> {
+            if (me.getButton() == MouseButton.PRIMARY) {
+                rootPane.paint(me);
+            } else if (me.getButton() == MouseButton.SECONDARY) {
+                rootPane.clearAll();
+            }
+        };
     }
 
     public static void main(String[] args) {

@@ -4,8 +4,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 class RootPane extends GridPane {
-    private final int colMax;
-    private final int rowMax;
+    private final int colCount;
+    private final int rowCount;
     private final double hGap;
     private final double vGap;
     private final double pixelWidth;
@@ -13,11 +13,11 @@ class RootPane extends GridPane {
     private final Color initColor;
     private final Color paintColor;
 
-    RootPane(int colMax, int rowMax, double hGap, double vGap, double pixelWidth, double pixelHeight,
+    RootPane(int colCount, int rowCount, double hGap, double vGap, double pixelWidth, double pixelHeight,
              Color initColor, Color paintColor) {
-        // Initialize variables
-        this.colMax = colMax;
-        this.rowMax = rowMax;
+        // Initialize fields
+        this.colCount = colCount;
+        this.rowCount = rowCount;
         this.hGap = hGap;
         this.vGap = vGap;
         this.pixelWidth = pixelWidth;
@@ -27,13 +27,13 @@ class RootPane extends GridPane {
         // Set vertical and horizontal gaps between controls.
         setVgap(vGap);
         setHgap(hGap);
-        // Add columns, rows.
-        pixelsInit(colMax, rowMax, pixelWidth, pixelHeight/*, initFiller*/);
+        // Add pixels.
+        pixelsInit(colCount, rowCount, pixelWidth, pixelHeight);
     }
 
-    private void pixelsInit(int colMax, int rowMax, double pixelWidth, double pixelHeight) {
-        for (int col = 0; col < colMax; col++) {
-            for (int row = 0; row < rowMax; row++) {
+    private void pixelsInit(int colCount, int rowCount, double pixelWidth, double pixelHeight) {
+        for (int col = 0; col < colCount; col++) {
+            for (int row = 0; row < rowCount; row++) {
                 Pixel pixel = new Pixel(pixelWidth, pixelHeight, initColor);
                 add(pixel, col, row);
             }
@@ -50,8 +50,8 @@ class RootPane extends GridPane {
     }
 
     void clearAll() {
-        for (int col = 0; col < colMax; /*getColumnConstraints().size()*/ col++) {
-            for (int row = 0; row < rowMax; /*getRowConstraints().size()*/ row++) {
+        for (int col = 0; col < colCount /*getColumnConstraints().size()*/; col++) {
+            for (int row = 0; row < rowCount /*getRowConstraints().size()*/; row++) {
                 Pixel pixel = (Pixel) getChildNode(col, row);
                 pixel.setFill(initColor);
             }
