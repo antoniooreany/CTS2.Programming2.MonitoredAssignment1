@@ -95,6 +95,7 @@ public class MonitoredAssignment1 extends Application {
     // TODO Access could be private
     public void createGrid() {
         // TODO Name variables i, j - column, row
+        // TODO The constants "16", "16" should be moved into the constants of the class for flexibility increasing
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
                 // Make the square white so it is initially invisible
