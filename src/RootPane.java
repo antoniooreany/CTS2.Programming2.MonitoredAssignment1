@@ -29,47 +29,64 @@ class RootPane extends GridPane {
         // Set vertical and horizontal gaps between controls.
         setVgap(vGap);
         setHgap(hGap);
-        // Add pixels.
+        // Initialize pixels.
         pixelsInit(colCount, rowCount, pixelWidth, pixelHeight);
     }
 
+    // Pixels initialization method
     private void pixelsInit(int colCount, int rowCount, double pixelWidth, double pixelHeight) {
+        // All the pixels of the rootPane creation in the loop to fill them by "initColor" = initialize them
         for (int col = 0; col < colCount; col++) {
             for (int row = 0; row < rowCount; row++) {
+                // A new pixel creation
                 Pixel pixel = new Pixel(pixelWidth, pixelHeight, initColor);
+                // Adding the new pixel into rootPane
                 add(pixel, col, row);
             }
         }
     }
 
+    // Paint method
     void paint(MouseEvent mouseEvent) {
-        int col = getIndex(mouseEvent.getX(), getHgap(), getPadding().getLeft(), pixelWidth);
-        int row = getIndex(mouseEvent.getY(), getVgap(), getPadding().getTop(), pixelHeight);
+        // Column, row of pixel to paint initialization
+        int col = getPixelPositionIndex(mouseEvent.getX(), getHgap(), getPadding().getLeft(), pixelWidth);
+        int row = getPixelPositionIndex(mouseEvent.getY(), getVgap(), getPadding().getTop(), pixelHeight);
+        // Finding the pixel to paint by its column and row
         Pixel pixel = (Pixel) getChildNode(col, row);
+        // Painting the pixel (if it exists) by the "paintColor" = paint it
         if (pixel != null) {
             pixel.setFill(paintColor);
         }
     }
 
+    // Clear method
     void clearAll() {
-        for (int col = 0; col < colCount /*getColumnConstraints().size()*/; col++) {
-            for (int row = 0; row < rowCount /*getRowConstraints().size()*/; row++) {
+        // All the pixels of the rootPane loop to fill them by "initColor" = clear them
+        for (int col = 0; col < colCount; col++) {
+            for (int row = 0; row < rowCount; row++) {
+                // Finding the pixel to paint by its column and row
                 Pixel pixel = (Pixel) getChildNode(col, row);
+                // Painting the pixel (if it exists) by the "initColor" = clear it
                 pixel.setFill(initColor);
             }
         }
     }
 
-    private int getIndex(double coordinate, double gap, double inset, double pixelSize) {
+    // Position index getting method
+    private int getPixelPositionIndex(double coordinate, double gap, double inset, double pixelSize) {
+        // Position index calculation
         return (int) ((coordinate + gap / 2 - inset) / (pixelSize + gap));
     }
 
+    // Pixel getting method
     private Node getChildNode(int col, int row) {
+        // Going through all of the pixels in the loop and finding with a particular column, row
         for (Node node : getChildren()) {
             if (RootPane.getColumnIndex(node) == col && RootPane.getRowIndex(node) == row) {
                 return node;
             }
         }
+        // If the pixel with a particular column, row is not found, return null
         return null;
     }
 }

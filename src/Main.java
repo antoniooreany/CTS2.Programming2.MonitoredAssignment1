@@ -7,6 +7,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+// Group members : Andrei Martins, Anton Gorshkov, Josh Kornfeld
+
 public class Main extends Application {
     // Initialize constants
     private static final double TOP_INSET = 0;
@@ -37,18 +39,26 @@ public class Main extends Application {
         scene.addEventHandler(MouseEvent.MOUSE_DRAGGED, getMouseEventHandler(rootPane));
         // Set the scene on the stage.
         stage.setScene(scene);
+        // the size of the stage match the size of the scene
         stage.sizeToScene();
+        // the size of the stage set as not resizable
         stage.setResizable(false);
         // Show the stage and its scene.
         stage.show();
     }
 
+    // MouseEventHandler: events initialization for the left and right mouse buttons
     private EventHandler<MouseEvent> getMouseEventHandler(RootPane rootPane) {
-        return mouseEvent -> {
-            if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-                rootPane.paint(mouseEvent);
-            } else if (mouseEvent.getButton() == MouseButton.SECONDARY) {
-                rootPane.clearAll();
+        return new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                // in case of PRIMARY BUTTON - paint
+                if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+                    rootPane.paint(mouseEvent);
+                // in case of SECONDARY BUTTON - clear
+                } else if (mouseEvent.getButton() == MouseButton.SECONDARY) {
+                    rootPane.clearAll();
+                }
             }
         };
     }
