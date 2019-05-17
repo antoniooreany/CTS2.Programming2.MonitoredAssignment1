@@ -2,6 +2,7 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 class RootPane extends GridPane {
     private final int colCount;
@@ -78,15 +79,21 @@ class RootPane extends GridPane {
         return (int) ((coordinate + gap / 2 - inset) / (pixelSize + gap));
     }
 
-    // Pixel getting method
+//     Pixel getting method
+    // TODO Remove redundant getChildNode(), not paint the pixels, but add new already painted pixels with if() statement,
+    // TODO
+//    if (x < PWIDTH && y < PHEIGHT) {
+//        Rectangle rectangle = new Rectangle(RWIDTH, RHEIGHT, Color.BLACK);
+//        grid.add(rectangle, x, y);
+//    }
     private Node getChildNode(int col, int row) {
-        // Going through all of the pixels in the loop and finding with a particular column, row
+//         Going through all of the pixels in the loop and finding with a particular column, row
         for (Node node : getChildren()) {
             if (RootPane.getColumnIndex(node) == col && RootPane.getRowIndex(node) == row) {
                 return node;
             }
         }
-        // If the pixel with a particular column, row is not found, return null
+//         If the pixel with a particular column, row is not found, return null
         return null;
     }
 }

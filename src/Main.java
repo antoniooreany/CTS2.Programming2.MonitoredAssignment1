@@ -11,10 +11,10 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     // Initialize constants
-    private static final double TOP_INSET = 0;
-    private static final double RIGHT_INSET = 0;
-    private static final double BOTTOM_INSET = 0;
-    private static final double LEFT_INSET = 0;
+    private static final double TOP_INSET = 50;
+    private static final double RIGHT_INSET = 50;
+    private static final double BOTTOM_INSET = 50;
+    private static final double LEFT_INSET = 50;
     private static final int X_MAX = 16;
     private static final int Y_MAX = 16;
     private static final double H_GAP = 2;
