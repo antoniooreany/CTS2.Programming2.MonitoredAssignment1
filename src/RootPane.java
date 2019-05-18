@@ -1,10 +1,10 @@
-import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 class RootPane extends GridPane {
+    // TODO Do we need all of these fields?
+    // TODO If not, than How to avoid creating these fields?
     private final int colCount;
     private final int rowCount;
     private final double hGap;
@@ -31,18 +31,16 @@ class RootPane extends GridPane {
         setVgap(vGap);
         setHgap(hGap);
         // Initialize pixels.
-        pixelsInit(colCount, rowCount, pixelWidth, pixelHeight);
+        fillRoot();
     }
 
     // Pixels initialization method
-    private void pixelsInit(int colCount, int rowCount, double pixelWidth, double pixelHeight) {
+    void fillRoot() {
         // All the pixels of the rootPane creation in the loop to fill them by "initColor" = initialize them
         for (int col = 0; col < colCount; col++) {
             for (int row = 0; row < rowCount; row++) {
-                // A new pixel creation
-                Pixel pixel = new Pixel(pixelWidth, pixelHeight, initColor);
-                // Adding the new pixel into rootPane
-                add(pixel, col, row);
+                // A new pixel addition
+                addNewPixel(row, col, initColor);
             }
         }
     }
@@ -50,50 +48,25 @@ class RootPane extends GridPane {
     // Paint method
     void paint(MouseEvent mouseEvent) {
         // Column, row of pixel to paint initialization
-        int col = getPixelPositionIndex(mouseEvent.getX(), getHgap(), getPadding().getLeft(), pixelWidth);
-        int row = getPixelPositionIndex(mouseEvent.getY(), getVgap(), getPadding().getTop(), pixelHeight);
-        // Finding the pixel to paint by its column and row
-        Pixel pixel = (Pixel) getChildNode(col, row);
-        // Painting the pixel (if it exists) by the "paintColor" = paint it
-        if (pixel != null) {
-            pixel.setFill(paintColor);
+        int col = getPixelPositionIndex(mouseEvent.getX(), hGap, getPadding().getLeft(), pixelWidth);
+        int row = getPixelPositionIndex(mouseEvent.getY(), vGap, getPadding().getTop(), pixelHeight);
+        // Create the painted pixel, put it in the appropriate position (if it exists) in the rootPane
+        if (col >= 0 && col < colCount
+                && row >= 0 && row < rowCount) {
+            // A new pixel addition
+            addNewPixel(row, col, paintColor);
         }
     }
 
-    // Clear method
-    void clearAll() {
-        // All the pixels of the rootPane loop to fill them by "initColor" = clear them
-        for (int col = 0; col < colCount; col++) {
-            for (int row = 0; row < rowCount; row++) {
-                // Finding the pixel to paint by its column and row
-                Pixel pixel = (Pixel) getChildNode(col, row);
-                // Painting the pixel (if it exists) by the "initColor" = clear it
-                pixel.setFill(initColor);
-            }
-        }
+    // A new pixel addition method
+    private void addNewPixel(int row, int col, Color color) {
+        Pixel pixel = new Pixel(pixelWidth, pixelHeight, color);
+        add(pixel, col, row);
     }
 
     // Position index getting method
     private int getPixelPositionIndex(double coordinate, double gap, double inset, double pixelSize) {
         // Position index calculation
         return (int) ((coordinate + gap / 2 - inset) / (pixelSize + gap));
-    }
-
-//     Pixel getting method
-    // TODO Remove redundant getChildNode(), not paint the pixels, but add new already painted pixels with if() statement,
-    // TODO
-//    if (x < PWIDTH && y < PHEIGHT) {
-//        Rectangle rectangle = new Rectangle(RWIDTH, RHEIGHT, Color.BLACK);
-//        grid.add(rectangle, x, y);
-//    }
-    private Node getChildNode(int col, int row) {
-//         Going through all of the pixels in the loop and finding with a particular column, row
-        for (Node node : getChildren()) {
-            if (RootPane.getColumnIndex(node) == col && RootPane.getRowIndex(node) == row) {
-                return node;
-            }
-        }
-//         If the pixel with a particular column, row is not found, return null
-        return null;
     }
 }

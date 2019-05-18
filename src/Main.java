@@ -11,25 +11,26 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     // Initialize constants
-    private static final double TOP_INSET = 50;
-    private static final double RIGHT_INSET = 50;
-    private static final double BOTTOM_INSET = 50;
-    private static final double LEFT_INSET = 50;
-    private static final int X_MAX = 16;
-    private static final int Y_MAX = 16;
+    private static final double TOP_INSET = 10;
+    private static final double RIGHT_INSET = 10;
+    private static final double BOTTOM_INSET = 10;
+    private static final double LEFT_INSET = 10;
+    private static final int COL_COUNT = 16;
+    private static final int ROW_COUNT = 16;
     private static final double H_GAP = 2;
     private static final double V_GAP = 2;
     private static final double PIXEL_WIDTH = 20;
     private static final double PIXEL_HEIGHT = 20;
     private static final Color INIT_COLOR = Color.WHITE;
     private static final Color PAINT_COLOR = Color.BLACK;
+    private static final String title = "Monitored Assignment1";
 
     // Override the start() method.
     public void start(Stage stage) {
         // Give the stage a title.
-        stage.setTitle("Monitored Assignment1");
+        stage.setTitle(title);
         // Create the GridPane.
-        RootPane rootPane = new RootPane(X_MAX, Y_MAX, H_GAP, V_GAP, PIXEL_WIDTH, PIXEL_HEIGHT, INIT_COLOR, PAINT_COLOR);
+        RootPane rootPane = new RootPane(COL_COUNT, ROW_COUNT, H_GAP, V_GAP, PIXEL_WIDTH, PIXEL_HEIGHT, INIT_COLOR, PAINT_COLOR);
         // Gaps at the outside borders
         rootPane.setPadding(new Insets(TOP_INSET, RIGHT_INSET, BOTTOM_INSET, LEFT_INSET));
         // Create a scene.
@@ -57,7 +58,8 @@ public class Main extends Application {
                     rootPane.paint(mouseEvent);
                 // in case of SECONDARY BUTTON - clear
                 } else if (mouseEvent.getButton() == MouseButton.SECONDARY) {
-                    rootPane.clearAll();
+                    rootPane.fillRoot();
+
                 }
             }
         };
