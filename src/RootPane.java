@@ -80,32 +80,11 @@ class RootPane extends GridPane {
                 // in case of PRIMARY BUTTON - paint
                 if (mouseEvent.getButton() == MouseButton.PRIMARY) {
                     paint(mouseEvent);
-                    // in case of SECONDARY BUTTON - clear
-                } else if (mouseEvent.getButton() == MouseButton.SECONDARY) {
+                }
+                // in case of SECONDARY BUTTON - clear
+                else if (mouseEvent.getButton() == MouseButton.SECONDARY) {
                     fillRoot();
                 }
-            }
-        };
-    }
-
-    // MouseEventHandler: events initialization for the left and right mouse buttons
-    EventHandler<MouseEvent> getMouseEventHandlerPrimary() {
-        return new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                // in case of PRIMARY BUTTON - paint
-                    paint(mouseEvent);
-            }
-        };
-    }
-
-    // MouseEventHandler: events initialization for the left and right mouse buttons
-    EventHandler<MouseEvent> getMouseEventHandlerSecondary() {
-        return new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                // in case of SECONDARY BUTTON - clear
-                    fillRoot();
             }
         };
     }

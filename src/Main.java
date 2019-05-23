@@ -34,8 +34,7 @@ public class Main extends Application {
         // Create a scene.
         Scene scene = new Scene(rootPane);
         // Handle a mouse press and drag event on the scene.
-        scene.addEventHandler(MouseEvent.MOUSE_PRESSED, rootPane.getMouseEventHandler());
-        scene.addEventHandler(MouseEvent.MOUSE_DRAGGED, rootPane.getMouseEventHandler());
+        scene.addEventHandler(MouseEvent.ANY, rootPane.getMouseEventHandler());
         // Set the scene on the stage.
         stage.setScene(scene);
         // the size of the stage match the size of the scene
