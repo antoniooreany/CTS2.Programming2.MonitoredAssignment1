@@ -87,4 +87,26 @@ class RootPane extends GridPane {
             }
         };
     }
+
+    // MouseEventHandler: events initialization for the left and right mouse buttons
+    EventHandler<MouseEvent> getMouseEventHandlerPrimary() {
+        return new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                // in case of PRIMARY BUTTON - paint
+                    paint(mouseEvent);
+            }
+        };
+    }
+
+    // MouseEventHandler: events initialization for the left and right mouse buttons
+    EventHandler<MouseEvent> getMouseEventHandlerSecondary() {
+        return new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                // in case of SECONDARY BUTTON - clear
+                    fillRoot();
+            }
+        };
+    }
 }
