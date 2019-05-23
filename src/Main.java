@@ -7,7 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-// Group members : Andrei Martins, Anton Gorshkov, Josh Kornfeld
+// Group members : Rodion Danilenko, Anton Gorshkov, Henry Cela
 
 public class Main extends Application {
     // Initialize constants
@@ -36,8 +36,8 @@ public class Main extends Application {
         // Create a scene.
         Scene scene = new Scene(rootPane);
         // Handle a mouse press and drag event on the scene.
-        scene.addEventHandler(MouseEvent.MOUSE_PRESSED, getMouseEventHandler(rootPane));
-        scene.addEventHandler(MouseEvent.MOUSE_DRAGGED, getMouseEventHandler(rootPane));
+        scene.addEventHandler(MouseEvent.MOUSE_PRESSED, rootPane.getMouseEventHandler());
+        scene.addEventHandler(MouseEvent.MOUSE_DRAGGED, rootPane.getMouseEventHandler());
         // Set the scene on the stage.
         stage.setScene(scene);
         // the size of the stage match the size of the scene
@@ -46,23 +46,6 @@ public class Main extends Application {
         stage.setResizable(false);
         // Show the stage and its scene.
         stage.show();
-    }
-
-    // MouseEventHandler: events initialization for the left and right mouse buttons
-    private EventHandler<MouseEvent> getMouseEventHandler(RootPane rootPane) {
-        return new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                // in case of PRIMARY BUTTON - paint
-                if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-                    rootPane.paint(mouseEvent);
-                // in case of SECONDARY BUTTON - clear
-                } else if (mouseEvent.getButton() == MouseButton.SECONDARY) {
-                    rootPane.fillRoot();
-
-                }
-            }
-        };
     }
 
     public static void main(String[] args) {

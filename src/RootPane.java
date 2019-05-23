@@ -1,3 +1,5 @@
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -34,8 +36,8 @@ class RootPane extends GridPane {
         fillRoot();
     }
 
-    // Pixels initialization method
-    void fillRoot() {
+    // Root filler method
+    private void fillRoot() {
         // All the pixels of the rootPane creation in the loop to fill them by "initColor" = initialize them
         for (int col = 0; col < colCount; col++) {
             for (int row = 0; row < rowCount; row++) {
@@ -46,7 +48,7 @@ class RootPane extends GridPane {
     }
 
     // Paint method
-    void paint(MouseEvent mouseEvent) {
+    private void paint(MouseEvent mouseEvent) {
         // Column, row of pixel to paint initialization
         int col = getPixelPositionIndex(mouseEvent.getX(), hGap, getPadding().getLeft(), pixelWidth);
         int row = getPixelPositionIndex(mouseEvent.getY(), vGap, getPadding().getTop(), pixelHeight);
@@ -68,5 +70,21 @@ class RootPane extends GridPane {
     private int getPixelPositionIndex(double coordinate, double gap, double inset, double pixelSize) {
         // Position index calculation
         return (int) ((coordinate + gap / 2 - inset) / (pixelSize + gap));
+    }
+
+    // MouseEventHandler: events initialization for the left and right mouse buttons
+    EventHandler<MouseEvent> getMouseEventHandler() {
+        return new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                // in case of PRIMARY BUTTON - paint
+                if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+                    paint(mouseEvent);
+                    // in case of SECONDARY BUTTON - clear
+                } else if (mouseEvent.getButton() == MouseButton.SECONDARY) {
+                    fillRoot();
+                }
+            }
+        };
     }
 }
