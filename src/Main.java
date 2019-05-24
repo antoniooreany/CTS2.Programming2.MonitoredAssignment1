@@ -6,7 +6,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 // Group members : Rodion Danilenko, Anton Gorshkov, Henry Cela
-
 public class Main extends Application {
     // Initialize constants
     private static final double TOP_INSET = 10;
